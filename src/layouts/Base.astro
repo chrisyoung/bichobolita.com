@@ -1,0 +1,54 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'Bicho Bolita' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <style>
+      :root {
+        --color-bg: #0a0a0a;
+        --color-text: #e8e4df;
+        --color-muted: #9a938b;
+        --color-accent: #c9a96e;
+        --color-rule: #2a2520;
+        --max-width: 42rem;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 18px;
+      }
+
+      body {
+        font-family: Georgia, 'Times New Roman', serif;
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.7;
+        padding: 3rem 1.5rem;
+      }
+
+      main {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

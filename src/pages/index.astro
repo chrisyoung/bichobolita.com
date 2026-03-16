@@ -1,0 +1,96 @@
+---
+import { createReader } from '@keystatic/core/reader';
+import Markdoc from '@markdoc/markdoc';
+import keystaticConfig from '../../keystatic.config';
+import Base from '../layouts/Base.astro';
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const framework = await reader.singletons.creativeFramework.readOrThrow();
+const content = await framework.content();
+const html = Markdoc.renderers.html(Markdoc.transform(content.node));
+---
+
+<Base title="Bicho Bolita">
+  <header>
+    <h1>{framework.title}</h1>
+    {framework.subtitle && <p class="subtitle">{framework.subtitle}</p>}
+  </header>
+
+  <article set:html={html} />
+</Base>
+
+<style>
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: var(--color-muted);
+    font-size: 1rem;
+  }
+
+  article :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-accent);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  article :global(h3) {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  article :global(p) {
+    margin-bottom: 1.2rem;
+  }
+
+  article :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-rule);
+    margin: 2.5rem 0;
+  }
+
+  article :global(strong) {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  article :global(em) {
+    color: var(--color-muted);
+  }
+
+  article :global(ul),
+  article :global(ol) {
+    margin-bottom: 1.2rem;
+    padding-left: 1.5rem;
+  }
+
+  article :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  article :global(blockquote) {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+</style>
