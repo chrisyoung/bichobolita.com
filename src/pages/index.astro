@@ -11,12 +11,12 @@ const html = Markdoc.renderers.html(Markdoc.transform(content.node));
 ---
 
 <Base title="Bicho Bolita">
-  <img src="/images/bicho-sketch.jpg" alt="Bicho Bolita concept sketches" class="hero" />
-
   <header>
     <h1>{framework.title}</h1>
     {framework.subtitle && <p class="subtitle">{framework.subtitle}</p>}
   </header>
+
+  <img src="/images/bicho-sketch.jpg" alt="Bicho Bolita concept sketches" class="hero" />
 
   <article set:html={html} />
 </Base>
