@@ -13,6 +13,12 @@ import Base from '../layouts/Base.astro';
     <p>Experimentation is not the same as planning. Planning asks "what's the most efficient path?" Experimentation asks "what's alive here?" They require different postures, and we need to be honest about which one we're in at any given moment.</p>
   </div>
 
+  <section class="prototype">
+    <h2>Physical Prototyping</h2>
+    <img src="/images/orange-pillbug-prototype.jpg" alt="Orange with toothpicks arranged to show segmented pillbug form" />
+    <p class="caption">Testing segmentation concept with everyday materials — an orange and toothpicks become a pillbug. The form wants to curl.</p>
+  </section>
+
   <video src="/images/seed-video.mp4" autoplay muted loop controls playsinline></video>
 </Base>
 
@@ -48,6 +54,32 @@ import Base from '../layouts/Base.astro';
 
   .intro em {
     color: var(--color-muted);
+  }
+
+  .prototype {
+    margin-bottom: 3rem;
+  }
+
+  .prototype h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: var(--color-accent);
+  }
+
+  .prototype img {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto 1rem;
+    border-radius: 4px;
+  }
+
+  .prototype .caption {
+    text-align: center;
+    font-style: italic;
+    color: var(--color-muted);
+    font-size: 0.95rem;
   }
 
   video {
