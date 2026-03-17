@@ -12,7 +12,13 @@ const images = [
 <Base title="Seeds | Bicho Bolita" description="Inspiration and reference images for Bicho Bolita.">
   <header>
     <h1>Seeds</h1>
+    <p class="subtitle">Gathering Without Judgment</p>
   </header>
+
+  <div class="intro">
+    <p>In the Seed phase, we collect everything that sparks something: images, feelings, references, fragments of experience. We don't compare seeds to find the best one. We simply gather them. The only discipline here is <em>noticing</em> and <em>recording</em>.</p>
+    <p>New seeds still arrive. Don't dismiss them just because we're further along. A late-arriving seed (a texture, a sound, a way of framing the encounter) might be the thing that elevates a good project into a great one.</p>
+  </div>
 
   <div class="gallery">
     {images.map((img) => (
@@ -34,6 +40,25 @@ const images = [
     font-weight: 400;
     letter-spacing: 0.02em;
     color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: var(--color-muted);
+    font-size: 1rem;
+  }
+
+  .intro {
+    margin-bottom: 3rem;
+  }
+
+  .intro p {
+    margin-bottom: 1.2rem;
+  }
+
+  .intro em {
+    color: var(--color-muted);
   }
 
   .gallery {
