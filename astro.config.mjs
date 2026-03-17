@@ -7,6 +7,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://bichobolita.com',
   integrations: [react(), markdoc(), keystatic()],
   output: 'static',
   adapter: cloudflare(),
