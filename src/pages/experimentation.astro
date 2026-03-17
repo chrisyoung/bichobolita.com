@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Experimentation | Bicho Bolita" description="Playing without rules.">
+  <header>
+    <h1>Experimentation</h1>
+    <p class="subtitle">Playing Without Rules</p>
+  </header>
+
+  <video src="/images/seed-video.mp4" controls playsinline preload="metadata"></video>
+</Base>
+
+<style>
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: var(--color-muted);
+    font-size: 1rem;
+  }
+
+  video {
+    width: 100%;
+    border-radius: 4px;
+  }
+</style>

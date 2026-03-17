@@ -29,9 +29,6 @@ const images = [
   </div>
 
   <div class="grid">
-    <div class="grid-item grid-item-video">
-      <video src="/images/seed-video.mp4" muted loop playsinline preload="metadata"></video>
-    </div>
     {images.map((img, i) => (
       <div class="grid-item" data-index={i}>
         <img src={img.src} alt={img.alt} loading="lazy" />
@@ -87,12 +84,7 @@ const images = [
     if (e.key === 'ArrowRight') show(current + 1);
   });
 
-  document.querySelectorAll('.grid-item-video').forEach((item) => {
-    const video = item.querySelector('video');
-    item.addEventListener('mouseenter', () => video.play());
-    item.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
-    item.addEventListener('click', () => { video.play(); video.controls = true; });
-  });
+
 </script>
 
 <style>
