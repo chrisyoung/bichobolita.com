@@ -8,6 +8,11 @@ import Base from '../layouts/Base.astro';
     <p class="subtitle">Playing Without Rules</p>
   </header>
 
+  <div class="intro">
+    <p>We know the experience. We don't yet know how to build it. That gap is the creative frontier, the place where discovery happens. Rubin says excitement is the best barometer here. When something starts to come together, it creates a feeling of leaning forward, of <em>wanting more</em>. Follow that energy.</p>
+    <p>Experimentation is not the same as planning. Planning asks "what's the most efficient path?" Experimentation asks "what's alive here?" They require different postures, and we need to be honest about which one we're in at any given moment.</p>
+  </div>
+
   <video src="/images/seed-video.mp4" autoplay muted loop controls playsinline></video>
 </Base>
 
@@ -31,6 +36,18 @@ import Base from '../layouts/Base.astro';
     font-style: italic;
     color: var(--color-muted);
     font-size: 1rem;
+  }
+
+  .intro {
+    margin-bottom: 3rem;
+  }
+
+  .intro p {
+    margin-bottom: 1.2rem;
+  }
+
+  .intro em {
+    color: var(--color-muted);
   }
 
   video {
