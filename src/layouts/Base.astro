@@ -1,9 +1,11 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = 'Bicho Bolita' } = Astro.props;
+const { title = 'Bicho Bolita', description = 'A work of art for the playa.' } = Astro.props;
+const url = Astro.url.href;
 ---
 
 <!doctype html>
@@ -12,6 +14,15 @@ const { title = 'Bicho Bolita' } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Bicho Bolita" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <style>
       :root {
         --color-bg: #0a0a0a;
