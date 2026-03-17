@@ -53,6 +53,24 @@ const url = Astro.url.href;
         padding: 3rem 1.5rem;
       }
 
+      nav {
+        max-width: var(--max-width);
+        margin: 0 auto 2rem;
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      nav a {
+        color: var(--color-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        letter-spacing: 0.03em;
+      }
+
+      nav a:hover {
+        color: var(--color-accent);
+      }
+
       main {
         max-width: var(--max-width);
         margin: 0 auto;
@@ -60,6 +78,10 @@ const url = Astro.url.href;
     </style>
   </head>
   <body>
+    <nav>
+      <a href="/">Framework</a>
+      <a href="/seeds">Seeds</a>
+    </nav>
     <main>
       <slot />
     </main>

@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+
+const images = [
+  { src: '/images/bicho-bolita.jpg', alt: 'Iridescent pill bug art car on the playa' },
+  { src: '/images/seed-1.jpg', alt: 'Giant isopod vehicle at a festival in Japan' },
+  { src: '/images/seed-2.jpg', alt: 'Spider art car on the playa' },
+  { src: '/images/seed-3.png', alt: 'Rolled-up pill bug art car on the playa' },
+];
+---
+
+<Base title="Seeds | Bicho Bolita" description="Inspiration and reference images for Bicho Bolita.">
+  <header>
+    <h1>Seeds</h1>
+  </header>
+
+  <div class="gallery">
+    {images.map((img) => (
+      <img src={img.src} alt={img.alt} loading="lazy" />
+    ))}
+  </div>
+</Base>
+
+<style>
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-accent);
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .gallery img {
+    width: 100%;
+    border-radius: 4px;
+  }
+</style>
