@@ -7,7 +7,19 @@ import Base from '../layouts/Base.astro';
 const reader = createReader(process.cwd(), keystaticConfig);
 const framework = await reader.singletons.creativeFramework.readOrThrow();
 const content = await framework.content();
-const html = Markdoc.renderers.html(Markdoc.transform(content.node));
+const rendered = Markdoc.renderers.html(Markdoc.transform(content.node));
+
+// Add IDs to headings and build TOC
+const headingRegex = /<(h[23])>(.*?)<\/\1>/g;
+let match;
+const toc: { level: number; id: string; text: string }[] = [];
+const html = rendered.replace(headingRegex, (_, tag, text) => {
+  const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const level = parseInt(tag[1]);
+  toc.push({ level, id, text });
+  return `<${tag} id="${id}">${text}</${tag}>`;
+});
+
 const hrIndex = html.indexOf('<hr>');
 const beforeHr = html.slice(0, hrIndex);
 const afterHr = html.slice(hrIndex + 4);
@@ -23,6 +35,16 @@ const afterHr = html.slice(hrIndex + 4);
     <Fragment set:html={beforeHr} />
     <hr />
     <img src="/images/bicho-sketch.jpg" alt="Bicho Bolita concept sketches" class="hero" />
+    <nav class="toc">
+      <ul>
+        {toc.map((item) => (
+          <li class={item.level === 3 ? 'toc-sub' : ''}>
+            <a href={`#${item.id}`}>{item.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <hr />
     <Fragment set:html={afterHr} />
   </article>
 </Base>
@@ -106,5 +128,32 @@ const afterHr = html.slice(hrIndex + 4);
     margin: 1.5rem 0;
     color: var(--color-muted);
     font-style: italic;
+  }
+
+  .toc {
+    margin-bottom: 2rem;
+  }
+
+  .toc ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .toc li {
+    margin-bottom: 0.4rem;
+  }
+
+  .toc .toc-sub {
+    padding-left: 1.2rem;
+  }
+
+  .toc a {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .toc a:hover {
+    color: var(--color-accent);
   }
 </style>
