@@ -11,6 +11,8 @@ const html = Markdoc.renderers.html(Markdoc.transform(content.node));
 ---
 
 <Base title="Bicho Bolita">
+  <img src="/images/bicho-bolita.jpg" alt="Bicho Bolita on the playa" class="hero" />
+
   <header>
     <h1>{framework.title}</h1>
     {framework.subtitle && <p class="subtitle">{framework.subtitle}</p>}
@@ -20,6 +22,12 @@ const html = Markdoc.renderers.html(Markdoc.transform(content.node));
 </Base>
 
 <style>
+  .hero {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+  }
+
   header {
     text-align: center;
     margin-bottom: 3rem;
