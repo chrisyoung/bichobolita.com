@@ -8,6 +8,9 @@ const reader = createReader(process.cwd(), keystaticConfig);
 const framework = await reader.singletons.creativeFramework.readOrThrow();
 const content = await framework.content();
 const html = Markdoc.renderers.html(Markdoc.transform(content.node));
+const hrIndex = html.indexOf('<hr>');
+const beforeHr = html.slice(0, hrIndex);
+const afterHr = html.slice(hrIndex + 4);
 ---
 
 <Base title="Bicho Bolita">
@@ -16,9 +19,12 @@ const html = Markdoc.renderers.html(Markdoc.transform(content.node));
     {framework.subtitle && <p class="subtitle">{framework.subtitle}</p>}
   </header>
 
-  <img src="/images/bicho-sketch.jpg" alt="Bicho Bolita concept sketches" class="hero" />
-
-  <article set:html={html} />
+  <article>
+    <Fragment set:html={beforeHr} />
+    <hr />
+    <img src="/images/bicho-sketch.jpg" alt="Bicho Bolita concept sketches" class="hero" />
+    <Fragment set:html={afterHr} />
+  </article>
 </Base>
 
 <style>
