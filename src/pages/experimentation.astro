@@ -19,7 +19,10 @@ import Base from '../layouts/Base.astro';
     <p class="caption">Testing segmentation concept with everyday materials — an orange and toothpicks become a pillbug. The form wants to curl.</p>
   </section>
 
-  <video src="/images/seed-video.mp4" autoplay muted loop controls playsinline></video>
+  <div class="prototype">
+    <video src="/images/seed-video.mp4" autoplay muted loop controls playsinline></video>
+    <p class="caption">A papier-mâché shell with flexible fabric-like hinges made of cardboard.</p>
+  </div>
 </Base>
 
 <style>
@@ -82,8 +85,11 @@ import Base from '../layouts/Base.astro';
     font-size: 0.95rem;
   }
 
-  video {
+  .prototype video {
     width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto 1rem;
     border-radius: 4px;
   }
 </style>
