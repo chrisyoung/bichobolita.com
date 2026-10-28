@@ -1,13 +1,15 @@
 ---
-import { createReader } from '@keystatic/core/reader';
 import Markdoc from '@markdoc/markdoc';
-import keystaticConfig from '../../keystatic.config';
+import raw from '../content/creative-framework/index.mdoc?raw';
 import Base from '../layouts/Base.astro';
 
-const reader = createReader(process.cwd(), keystaticConfig);
-const framework = await reader.singletons.creativeFramework.readOrThrow();
-const content = await framework.content();
-const rendered = Markdoc.renderers.html(Markdoc.transform(content.node));
+// Prerender runs in workerd (no filesystem), so Keystatic's fs reader is out;
+// the singleton file is imported at build time and parsed here instead.
+const [, frontmatter, body] = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)!;
+const field = (key: string) =>
+  frontmatter.match(new RegExp(`^${key}:\\s*"?(.*?)"?\\s*$`, 'm'))?.[1] ?? '';
+const framework = { title: field('title'), subtitle: field('subtitle') };
+const rendered = Markdoc.renderers.html(Markdoc.transform(Markdoc.parse(body)));
 
 // Add IDs to headings and build TOC
 const headingRegex = /<(h[23])>(.*?)<\/\1>/g;
